@@ -16,4 +16,12 @@ plugins=(git pyenv fzf)
 
 source $ZSH/oh-my-zsh.sh
 
+export DISPLAY=:0.0
 export EDITOR='nvim'
+
+alias dotfiles="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+dotfiles config --local status.showUntrackedFiles no
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
