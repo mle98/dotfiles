@@ -1,7 +1,6 @@
 scriptname=$(basename "$0")
 runmode=$1
 echo "executing the script in mode $1"
-
 function execute() {
         commandtype=$1
         shift
@@ -52,11 +51,11 @@ execute user tar -xf lazygit*.tar.gz
 execute user sudo ln -s ~/programs/lazygit /usr/local/bin/lazygit
 execute user rm LICENSE README.md lazygit*.tar.gz
 execute user sudo mkdir -p /usr/lib/jvm
-execute user wget https://download.java.net/java/GA/jdk23.0.1/c28985cbf10d4e648e4004050f8781aa/11/GPL/openjdk-23.0.1_linux-x64_bin.tar.gz
+execute user wget https://download.java.net/java/GA/jdk21.0.2/f2283984656d49d69e91c558476027ac/13/GPL/openjdk-21.0.2_linux-x64_bin.tar.gz
 execute user tar -xf openjdk*.tar.gz
 execute user rm openjdk*.tar.gz
-execute user sudo mv jdk-23.0.1 /usr/lib/jvm
-execute user sudo alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-23.0.1/bin/java 1
+execute user sudo mv jdk-21.0.2 /usr/lib/jvm
+execute user sudo alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-21.0.2/bin/java 1
 execute user source "$HOME/.zshrc"
 execute user pyenv install 3.13
 execute user pyenv global 3.13
