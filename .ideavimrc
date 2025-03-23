@@ -68,7 +68,12 @@ nmap <leader>of <Action>(GotoFile)
 nmap <M-j> <Action>(MethodDown)
 nmap <M-k> <Action>(MethodUp)
 
-nmap <leader>; /;<CR>
-
-" quick scope would be quite cool, displays first unique character for word
-" is also compatible with sneak I think...
+" harpoon
+nmap <leader><S-j> <Action>(SetFile1)
+nmap <leader><S-k> <Action>(SetFile2)
+nmap <leader><S-l> <Action>(SetFile3)
+nmap <leader><S-;> <Action>(SetFile4)
+nmap <leader>j <Action>(OpenFile1)
+nmap <leader>k <Action>(OpenFile2)
+nmap <leader>l <Action>(OpenFile3)
+nmap <leader>; <Action>(OpenFile4)
