@@ -7,34 +7,32 @@ set incsearch
 
 Plug 'machakann/vim-highlightedyank'
 Plug 'tpope/vim-commentary'
-" Plug 'justinmk/vim-sneak'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'preservim/nerdtree'
+Plug 'dbakker/vim-paragraph-motion'
+Plug 'chrisbra/matchit'
+Plug 'justinmk/vim-sneak'
 
 set ideajoin
 set rnu
-set clipboard+=unnamedplus
-set which-key
 set mini-ai
-set sneak 
+set clipboard=unnamedplus
 
 " navigation mapping inside file
-nmap n nzzzv
-nmap N Nzzzv
 nnoremap <C-u> <C-u>zz
 nnoremap <C-d> <C-d>zz
+nnamp <C-o> <Action>(Back)
+nnamp <C-i> <Action>(Forward)
 
-" undo redo
-nmap U <C-R>
 
 " easy sourcing
-nnoremap <Leader>m :source ~/.ideavimrc
+nnoremap <Leader>m :source ~/.ideavimrc<CR>
 
 " buffer operations
 xmap <leader>p \"_dP
 nmap <leader>d \"_d
-vmap <leader>d \"_d
+vmap <leader>x \"_x
 nmap <leader>c \"_c
-vmap <leader>c \"_c
 
 "misc
 nmap Q <nop>
@@ -43,30 +41,41 @@ nmap Q <nop>
 xmap <Leader>rr <Action>(RenameElement)
 map <Leader>rr <Action>(RenameElement)
 xmap <Leader>rm <Action>(ExtractMethod)
+nmap <Leader>rm <Action>(ExtractMethod)
 xmap <Leader>rv <Action>(IntroduceVariable)
+nmap <Leader>rv <Action>(IntroduceVariable)
 xmap <Leader>rf <Action>(IntroduceField)
+nmap <Leader>rf <Action>(IntroduceField)
 xmap <Leader>rc <Action>(IntroduceConstant)
+nmap <Leader>rc <Action>(IntroduceConstant)
 
 " multiselection
 nmap <M-n> <Plug>NextWholeOccurrence
 xmap <M-n> <Plug>NextWholeOccurrence
+vmap <M-w> <Action>(EditorSelectWord)
+vmap <M-b> <Action>(EditorUnSelectWord)
 nmap <leader><M-n> <Plug>AllWholeOccurrences
 xmap <leader><M-n> <Plug>AllWholeOccurrences
-xmap <M-p> <Plug>RemoveOccurrence
 
-" note about mini-ai
-" this enables for vi(i(i( to expand the selection of ( scopes
-" works on other text objects too!
 
 " navigation
-nmap <leader>ji <Action>(GotoImplementation)
-nmap <leader>jd <Action>(GotoDeclaration)
-nmap <leader>ju <Action>(FindUsages)
+nmap gi <Action>(GotoImplementation)
+nmap gd <Action>(GotoDeclaration)
+nmap gu <Action>(FindUsages)
+nmap gs <Action>(GotoSuperMethod)
 nmap <leader>oe <Action>(RecentFiles)
 nmap <leader>ol <Action>(RecentLocations)
 nmap <leader>of <Action>(GotoFile)
+nmap <leader>os <Action>(FileStructurePopup)
 nmap <M-j> <Action>(MethodDown)
 nmap <M-k> <Action>(MethodUp)
+vmap <M-j> <Action>(MethodDown)
+vmap <M-k> <Action>(MethodUp)
+
+" Window management
+nmap <leader>wr <Action>(SplitVertically) 
+nmap <leader>wc <Action>(CloseContent)
+nmap <leader>wf <Action>(MaximizeEditorInSplit)
 
 " harpoon
 nmap <leader><S-j> <Action>(SetFile1)
