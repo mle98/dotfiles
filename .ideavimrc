@@ -1,6 +1,6 @@
 let mapleader=" "
 
-set scrolloff=8
+set scrolloff=16
 
 " Do incremental searching.
 set incsearch
@@ -21,8 +21,6 @@ set clipboard=unnamedplus
 " navigation mapping inside file
 nnoremap <C-u> <C-u>zz
 nnoremap <C-d> <C-d>zz
-nnamp <C-o> <Action>(Back)
-nnamp <C-i> <Action>(Forward)
 
 
 " easy sourcing
@@ -67,6 +65,7 @@ nmap <leader>oe <Action>(RecentFiles)
 nmap <leader>ol <Action>(RecentLocations)
 nmap <leader>of <Action>(GotoFile)
 nmap <leader>os <Action>(FileStructurePopup)
+nmap <leader>op <Action>(ActivateProblemsViewToolWindow)
 nmap <M-j> <Action>(MethodDown)
 nmap <M-k> <Action>(MethodUp)
 vmap <M-j> <Action>(MethodDown)
@@ -81,8 +80,23 @@ nmap <leader>wf <Action>(MaximizeEditorInSplit)
 nmap <leader><S-j> <Action>(SetFile1)
 nmap <leader><S-k> <Action>(SetFile2)
 nmap <leader><S-l> <Action>(SetFile3)
-nmap <leader><S-;> <Action>(SetFile4)
+nmap <leader>: <Action>(SetFile4)
 nmap <leader>j <Action>(OpenFile1)
 nmap <leader>k <Action>(OpenFile2)
 nmap <leader>l <Action>(OpenFile3)
 nmap <leader>; <Action>(OpenFile4)
+
+" run configs
+nmap <leader>srr <Action>(ChooseRunConfiguration)
+nmap <leader>sr <Action>(Run)
+nmap <leader>srt <Action>(ContextRun)
+nmap <leader>sdd <Action>(ChooseDebugConfiguration)
+nmap <leader>sd <Action>(Debug)
+nmap <leader>sdt <Action>(ContextDebug)
+nmap <leader>ss <Action>(Stop)
+
+" back navigation
+nmap gb <Action>(Back)
+nmap gf <Action>(Forward)
+nmap ]e <Action>(GotoNextError)
+nmap [e <Action>(GotoPreviousError)
