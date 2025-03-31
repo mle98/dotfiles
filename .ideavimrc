@@ -93,6 +93,7 @@ nmap <leader>srt <Action>(ContextRun)
 nmap <leader>sdd <Action>(ChooseDebugConfiguration)
 nmap <leader>sd <Action>(Debug)
 nmap <leader>sdt <Action>(ContextDebug)
+nmap <leader>sb <Action>(CompileDirty)
 nmap <leader>ss <Action>(Stop)
 
 " back navigation
