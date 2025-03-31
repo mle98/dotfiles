@@ -101,3 +101,7 @@ nmap gb <Action>(Back)
 nmap gf <Action>(Forward)
 nmap ]e <Action>(GotoNextError)
 nmap [e <Action>(GotoPreviousError)
+
+" debug stuff
+nmap <leader>F9 <Action>(RunToCursor)
+nmap <leader>F8 <Action>(ToggleLineBreakpoint)
