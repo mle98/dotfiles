@@ -1,6 +1,7 @@
 let mapleader=" "
 
 set scrolloff=16
+set status-position=top
 
 " Do incremental searching.
 set incsearch
@@ -12,7 +13,11 @@ Plug 'preservim/nerdtree'
 Plug 'dbakker/vim-paragraph-motion'
 Plug 'chrisbra/matchit'
 Plug 'justinmk/vim-sneak'
+Plug 'vim-scripts/argtextobj.vim'
 
+set matchit
+set peekaboo
+set functiontextobj
 set ideajoin
 set rnu
 set mini-ai
@@ -61,8 +66,7 @@ nmap gi <Action>(GotoImplementation)
 nmap gd <Action>(GotoDeclaration)
 nmap gu <Action>(FindUsages)
 nmap gs <Action>(GotoSuperMethod)
-nmap <leader>oe <Action>(RecentFiles)
-nmap <leader>ol <Action>(RecentLocations)
+nmap <leader><leader> <Action>(RecentFiles)
 nmap <leader>of <Action>(GotoFile)
 nmap <leader>os <Action>(FileStructurePopup)
 nmap <leader>op <Action>(ActivateProblemsViewToolWindow)
@@ -97,8 +101,8 @@ nmap <leader>sb <Action>(CompileDirty)
 nmap <leader>ss <Action>(Stop)
 
 " back navigation
-nmap gb <Action>(Back)
-nmap gf <Action>(Forward)
+nmap gj <Action>(Back)
+nmap gk <Action>(Forward)
 nmap ]e <Action>(GotoNextError)
 nmap [e <Action>(GotoPreviousError)
 
