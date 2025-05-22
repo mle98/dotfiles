@@ -12,33 +12,41 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'preservim/nerdtree'
 Plug 'dbakker/vim-paragraph-motion'
 Plug 'chrisbra/matchit'
-Plug 'justinmk/vim-sneak'
 Plug 'vim-scripts/argtextobj.vim'
 
 set matchit
-set peekaboo
-set functiontextobj
 set ideajoin
 set rnu
 set mini-ai
-set clipboard=unnamedplus
 
 " navigation mapping inside file
 nnoremap <C-u> <C-u>zz
 nnoremap <C-d> <C-d>zz
 
-
 " easy sourcing
 nnoremap <Leader>m :source ~/.ideavimrc<CR>
 
 " buffer operations
-xmap <leader>p \"_dP
-nmap <leader>d \"_d
-vmap <leader>x \"_x
-nmap <leader>c \"_c
+map <leader>p \"_dP
+map <leader>d \"_d
+map <leader>c \"_c
+map <leader>x \"_x
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nnoremap <leader>p "+p
+vnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>P "+P
 
 "misc
 nmap Q <nop>
+nnoremap <Leader>/ /\c
+map % <Action>(EditorMatchBrace)
+nmap <C-S-M> <Action>(ActivateMavenToolWindow)
+nmap u <Action>($Undo)
+nmap U <Action>($Redo)
+nmap <C-r> <Action>(Replace)
+nmap <C-q> <Action>(QuickJavaDoc)
 
 "refactoring
 xmap <Leader>rr <Action>(RenameElement)
@@ -66,19 +74,35 @@ nmap gi <Action>(GotoImplementation)
 nmap gd <Action>(GotoDeclaration)
 nmap gu <Action>(FindUsages)
 nmap gs <Action>(GotoSuperMethod)
-nmap <leader><leader> <Action>(RecentFiles)
-nmap <leader>of <Action>(GotoFile)
-nmap <leader>os <Action>(FileStructurePopup)
-nmap <leader>op <Action>(ActivateProblemsViewToolWindow)
+nmap gt <Action>(GotoTest)
+nmap <leader><leader> <Action>(GotoFile)
+map <S-Esc> <Action>(RecentFiles)
+map <leader>or <Action>(RecentFiles)
 nmap <M-j> <Action>(MethodDown)
 nmap <M-k> <Action>(MethodUp)
 vmap <M-j> <Action>(MethodDown)
 vmap <M-k> <Action>(MethodUp)
 
+"opening stuff
+nmap <leader>os <Action>(FileStructurePopup)
+nmap <leader>op <Action>(ActivateProblemsViewToolWindow)
+nmap <leader>oh <Action>(LocalHistory)
+xmap <leader>oh <Action>(LocalHistory)
+nmap <leader>og <Action>(Git.Menu)
+xmap <leader>og <Action>(Git.Menu)
+
 " Window management
 nmap <leader>wr <Action>(SplitVertically) 
 nmap <leader>wc <Action>(CloseContent)
+nmap <leader>wC <Action>(CloseAllEditors)
 nmap <leader>wf <Action>(MaximizeEditorInSplit)
+nmap <C-M-S-Left> <Action>(StretchSplitToLeft)
+nmap <C-M-S-Right> <Action>(StretchSplitToRight)
+nmap <leader>od <Action>(ToggleDistractionFreeMode)
+nmap <leader>oz <Action>(ToggleFullScreen)
+nmap <leader>ww <Action>(HideAllWindows)
+
+
 
 " harpoon
 nmap <leader><S-j> <Action>(SetFile1)
@@ -101,10 +125,12 @@ nmap <leader>sb <Action>(CompileDirty)
 nmap <leader>ss <Action>(Stop)
 
 " back navigation
-nmap gj <Action>(Back)
-nmap gk <Action>(Forward)
 nmap ]e <Action>(GotoNextError)
 nmap [e <Action>(GotoPreviousError)
+nmap ]c <Action>(VcsShowNextChangeMarker)
+nmap [c <Action>(VcsShowPrevChangeMarker)
+map <C-o> <Action>(Back)
+map <C-i> <Action>(Forward)
 
 " debug stuff
 nmap <leader>F9 <Action>(RunToCursor)
