@@ -1,6 +1,6 @@
 let mapleader=" "
 
-set scrolloff=16
+set scrolloff=5
 set status-position=top
 
 " Do incremental searching.
@@ -18,6 +18,10 @@ set matchit
 set ideajoin
 set rnu
 set mini-ai
+set clipboard=unnamedplus
+set which-key
+set functiontextobj
+set ideamarks
 
 " navigation mapping inside file
 nnoremap <C-u> <C-u>zz
@@ -47,10 +51,14 @@ nmap u <Action>($Undo)
 nmap U <Action>($Redo)
 nmap <C-r> <Action>(Replace)
 nmap <C-q> <Action>(QuickJavaDoc)
+noremap > >gv
+noremap < <gv
 
 "refactoring
 xmap <Leader>rr <Action>(RenameElement)
 map <Leader>rr <Action>(RenameElement)
+xmap <Leader>rt <Action>(ChangeSignature)
+map <Leader>rt <Action>(ChangeSignature)
 xmap <Leader>rm <Action>(ExtractMethod)
 nmap <Leader>rm <Action>(ExtractMethod)
 xmap <Leader>rv <Action>(IntroduceVariable)
@@ -70,6 +78,8 @@ xmap <leader><M-n> <Plug>AllWholeOccurrences
 
 
 " navigation
+nmap ]k <Action>(PreviousOccurence)
+nmap ]j <Action>(NextOccurence)
 nmap gi <Action>(GotoImplementation)
 nmap gd <Action>(GotoDeclaration)
 nmap gu <Action>(FindUsages)
@@ -77,7 +87,6 @@ nmap gs <Action>(GotoSuperMethod)
 nmap gt <Action>(GotoTest)
 nmap <leader><leader> <Action>(GotoFile)
 map <S-Esc> <Action>(RecentFiles)
-map <leader>or <Action>(RecentFiles)
 nmap <M-j> <Action>(MethodDown)
 nmap <M-k> <Action>(MethodUp)
 vmap <M-j> <Action>(MethodDown)
@@ -87,22 +96,25 @@ vmap <M-k> <Action>(MethodUp)
 nmap <leader>os <Action>(FileStructurePopup)
 nmap <leader>op <Action>(ActivateProblemsViewToolWindow)
 nmap <leader>oh <Action>(LocalHistory)
-xmap <leader>oh <Action>(LocalHistory)
 nmap <leader>og <Action>(Git.Menu)
-xmap <leader>og <Action>(Git.Menu)
+nmap <leader>or <Action>(RecentFiles)
+nmap <leader>of <Action>(EditSource)
+xmap <leader>of <Action>(EditSource)
+nmap <leader>od <Action>(ToggleDistractionFreeMode)
+nmap <leader>oc <Action>(SelectIn)
+nmap <leader>oz <Action>(ToggleFullScreen)
+nmap <leader>oo <Action>(HideAllWindows)
 
 " Window management
-nmap <leader>wr <Action>(SplitVertically) 
+nmap <leader>wr <Action>(SplitVertically)
 nmap <leader>wc <Action>(CloseContent)
 nmap <leader>wC <Action>(CloseAllEditors)
 nmap <leader>wf <Action>(MaximizeEditorInSplit)
 nmap <C-M-S-Left> <Action>(StretchSplitToLeft)
 nmap <C-M-S-Right> <Action>(StretchSplitToRight)
-nmap <leader>od <Action>(ToggleDistractionFreeMode)
-nmap <leader>oz <Action>(ToggleFullScreen)
 nmap <leader>ww <Action>(HideAllWindows)
-
-
+nmap <leader>ot <Action>(ActivateTerminalToolWindow)
+nmap <C-M> <Action>(NextSplitter)
 
 " harpoon
 nmap <leader><S-j> <Action>(SetFile1)
@@ -122,16 +134,73 @@ nmap <leader>sdd <Action>(ChooseDebugConfiguration)
 nmap <leader>sd <Action>(Debug)
 nmap <leader>sdt <Action>(ContextDebug)
 nmap <leader>sb <Action>(CompileDirty)
+nmap <leader>sba <Action>(BuildArtifact)
 nmap <leader>ss <Action>(Stop)
 
 " back navigation
 nmap ]e <Action>(GotoNextError)
 nmap [e <Action>(GotoPreviousError)
 nmap ]c <Action>(VcsShowNextChangeMarker)
-nmap [c <Action>(VcsShowPrevChangeMarker)
+map [c <Action>(VcsShowPrevChangeMarker)
 map <C-o> <Action>(Back)
 map <C-i> <Action>(Forward)
 
 " debug stuff
 nmap <leader>F9 <Action>(RunToCursor)
 nmap <leader>F8 <Action>(ToggleLineBreakpoint)
+
+" marks
+
+nnoremap 'a `A
+nnoremap 'b `B
+nnoremap 'c `C
+nnoremap 'd `D
+nnoremap 'e `E
+nnoremap 'f `F
+nnoremap 'g `G
+nnoremap 'h `H
+nnoremap 'i `I
+nnoremap 'j `J
+nnoremap 'k `K
+nnoremap 'l `L
+nnoremap 'm `M
+nnoremap 'n `N
+nnoremap 'o `O
+nnoremap 'p `P
+nnoremap 'q `Q
+nnoremap 'r `R
+nnoremap 's `S
+nnoremap 't `T
+nnoremap 'u `U
+nnoremap 'v `V
+nnoremap 'w `W
+nnoremap 'x `X
+nnoremap 'y `Y
+nnoremap 'z `Z
+
+nnoremap ma mA
+nnoremap mb mB
+nnoremap mc mC
+nnoremap md mD
+nnoremap me mE
+nnoremap mf mF
+nnoremap mg mG
+nnoremap mh mH
+nnoremap mi mI
+nnoremap mj mJ
+nnoremap mk mK
+nnoremap ml mL
+nnoremap mm mM
+nnoremap mn mN
+nnoremap mo mO
+nnoremap mp mP
+nnoremap mq mQ
+nnoremap mr mR
+nnoremap ms mS
+nnoremap mt mT
+nnoremap mu mU
+nnoremap mv mV
+nnoremap mw mW
+nnoremap mx mX
+nnoremap my mY
+nnoremap mz mZ
