@@ -4,7 +4,9 @@ ZSH_THEME="robbyrussell"
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PATH:$PYENV_ROOT/bin:/usr/local/bin"
-export FZF_DEFAULT_OPTS='--exact'
+export FZF_CTRL_R_OPTS="-e"
+export FZF_DEFAULT_OPTS='-e'
+
 eval "$(pyenv init --path)"
 
 # Start the ssh-agent if not already running
@@ -12,16 +14,15 @@ if ! pgrep -u "$USER" ssh-agent > /dev/null; then
   eval $(ssh-agent -s)
 fi
 
-plugins=(git pyenv fzf)
+plugins=(git zsh-autosuggestions fzf colored-man-pages colorize command-not-found dnf docker docker-compose git-auto-fetch history keychain mvn ssh ssh-agent sudo systemd vi-mode zoxide)
 
 source $ZSH/oh-my-zsh.sh
 
-export DISPLAY=:0.0
-export EDITOR='nvim'
+bindkey -M viins '^Y' autosuggest-accept
+bindkey -M viins '^K' up-line-or-history
+bindkey -M viins '^J' down-line-or-history
 
-alias dotfiles="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-dotfiles config --local status.showUntrackedFiles no
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+bindkey '^R' fzf-history-widget
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+bindkey '^I' fzf-completion
