@@ -1,0 +1,40 @@
+TODOs/wants:
+ 
+[X]move selected block up and down 
+[N] move up down methods 
+[ ] move to next diagnostic/match (from search) globally 
+[N] sneak 
+[ ] something with parenthesis matching maybe? maybe not? 
+[ ] run configurations/run bash command 
+[N] select all shortcut 
+[ ] terminal integration, maybe with tmux? (harpoon probably) 
+[X] setup system clipboard yanking 
+[ ] search files in project, not entire system 
+[X] recently open files would be nice 
+[N] recent locations? BIG maybe 
+[ ] check more mini.nvim things 
+[ ] check more included snacks 
+[ ] maaaaaaybe something about registers? 
+[ ] sometime check multiple buffers 
+[ ] biiiig if: expand selection -> kind of sexy but kinda defeats the purpose of vim? 
+[X] multicursor!!! 
+
+
+<leader>e 		        file hirachy  					                                        f1 
+<leader><leader>        open file finder (entire home directory)	                            -
+<leader>/		        grep search 					                                        C-F
+<leader>:		        command history					                                        -
+C-n                     multi cursor select word                                                M-n
+        --> when         doing this, press q to skip occurence, press 
+C-Arrow down            multi cursor in next line                                               C-C-arrows
+M-j/k/l/;  
+    - in visual mode    move block up/down/left/right                                           c-arrows
+    - in normal mode    harpoon navigation                                                      -
+<leader>fr              recent files                                                            C-e
+
+
+miscellanious
+in undo history (leader su) you can actually copy the diff as a 'patch' with C-y
+with mini.ai, you can do stuff like v2i" to select the second next occurence of matching quotes
+with mini.ai, you can use 'f' for function calls like yaf
+mini.ai has q as synonym to quote, and b for brackets, a for text object, F for function definitions,l/n can be used for next and last
