@@ -10,6 +10,53 @@ function execute() {
         fi
 }
 
+function foobar () {
+
+        sudo pacman -Sys
+        sudo pacman -S vi ufw openssh net-tools apparmor linux-hardened-headers github-cli btop git base-devel hyperv
+        sudo sed -i 's/timeout 3/timeout 15/' /boot/loader/loader.conf
+        sudo systemctl enable --now ufw
+        sudo ufw enable
+        sudo sed -i '/^options /{/lsm=/{b}; s/$/ lsm=landlock,lockdown,yama,integrity,apparmor,bpf/}' /boot/loader/entries/*.conf
+        sudo sed -i 's/#auth *required *pam_wheel.so/auth required pam_wheel.so' /etc/pam.d/su
+        sudo sed -i 's/#auth *required *pam_wheel.so/auth required pam_wheel.so' /etc/pam.d/su-l
+        sudo passwd -l root
+        git clone https://aur.archlinux.org/yay.git
+        cd yay
+        makepkg -si
+        yay -Y --gendb
+        yay -S apparmor.d-git
+        sudo systemctl enable --now apparmor
+        
+        sudo pacman -S hyprland waybar ghostty wofi waybar ttf-font-awesome cliphist libnotify dunst pipewire wireplumber ffmpeg pavucontrol hyprpaper starship ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono zoxide fzf lazygit wget unzip eza tmux
+        cp /usr/share/hypr/hyprland.conf ~/.config/hypr
+        sed -i 's/monitor=,preferred,auto,auto/monitor=,preferred,auto,1/' ~/.config/hypr/hyprland.conf
+        
+        
+        
+        stow wofi -t ~
+        stow waybar -t ~
+        stow hyprmocha -t ~
+        stow ghostty -t ~
+        stow hyprpaper -t ~
+        stow backgrounds -t ~
+        stow starship -t ~
+        stow nvim -t ~
+        stow ideavim -t ~
+        mkdir -p ~/.config/dunst
+        cp /etc/dunst/dunstrc ~/.config/dunst/dunstrc
+        
+        chsh -s /usr/bin/fish
+        
+        pactl load-module module-null-sink sink_name=remote
+        pactl set-default-sink remote
+        
+        
+        .\ffplay -nodisp -fflags nobuffer -flags low_delay -f s16le -ch_layout stereo -ar 48000 "udp://0.0.0.0:18181?listen=1&fifo_size=32768&overrun_nonfatal=1"
+        ffmpeg -loglevel error -f pulse -i remote.monitor -ch_layout stereo -ar 48000 -f s16le "udp://172.23.112.1:18181"
+
+}
+
 newuser='mat'
 
 execute root yum update -y
