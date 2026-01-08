@@ -125,3 +125,7 @@ button:hover {
     padding-left: 6px;
     padding-right: 6px;
 }
+
+#mpris {
+  margin-left: 25px;
+}

@@ -4,15 +4,13 @@
 
 prefer-no-csd
 
-environment {
-    ELECTRON_OZONE_PLATFORM_HINT "auto"
-    XCURSOR_THEME "xcursor-invisible"
-    XCURSOR_SIZE "24"
+
+debug {
+    disable-cursor-plane
 }
 
-cursor {
-    xcursor-theme "xcursor-invisible"
-    xcursor-size 24
+environment {
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
 }
 
 // Input device configuration.
@@ -112,7 +110,7 @@ output "winit" {
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
-        background-color "transparent"
+    background-color "transparent"
     // Set gaps around windows in logical pixels.
     gaps 8
 
@@ -269,7 +267,8 @@ layout {
 // spawn-at-startup "/usr/lib/polkit-kde-authentication-agent-1"
 spawn-at-startup "waybar"
 //spawn-at-startup "bash" "-c" "$HOME/test.sh"
-spawn-at-startup "bash" "-c" "$HOME/.config/niri/wallpapers/random-picker.sh"
+spawn-at-startup "swaybg" "-i" "/home/mat/.config/backgrounds/background.png" "-m" "fill"
+spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 //spawn-at-startup "swaybg" "-m" "fill" "-i" "/home/mat/.config/niri/wallpapers/horizon.jpg"
 
 // spawn-at-startup "swayidle" "-w" "timeout" "31" "niri msg action power-off-monitors" "timeout" "30" "swaylock -f" "before-sleep" "swaylock -f"
@@ -331,10 +330,9 @@ clipboard {
 
 // Example: enable rounded corners for all windows.
 // (This example rule is commented out with a "/-" in front.)
-workspace "intellij"
-workspace "firefox"
-workspace "terminal"
-workspace "chrome"
+workspace "1"
+workspace "2"
+workspace "3"
 
 window-rule {
     geometry-corner-radius 5
@@ -374,8 +372,21 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+T hotkey-overlay-title="Open a Terminal" { spawn "alacritty"; }
+    Mod+T hotkey-overlay-title="Open a Terminal" { spawn "ghostty"; }
     Mod+O hotkey-overlay-title="Run an Application: fuzzel" { spawn "bash" "-c" "pgrep fuzzel && pkill fuzzel || fuzzel"; }
+
+    Mod+Y hotkey-overlay-title="Promote PRIMARY → clipboard" {
+        spawn-sh "wl-paste --primary | wl-copy";
+    }
+
+    Mod+P hotkey-overlay-title="Prepare PRIMARY for paste" {
+        spawn-sh "wl-paste --primary | wl-copy";
+    }
+
+    Mod+Shift+P hotkey-overlay-title="Clipboard history" {
+        spawn-sh "cliphist list | wofi --dmenu -i -p clipboard | cliphist decode | wl-copy";
+    }
+
     // Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
     // Mod+Backspace hotkey-overlay-title="Logout: wlogout" { spawn "bash" "-c" "pgrep wlogout && pkill wlogout || wlogout"; }
 
@@ -405,16 +416,12 @@ binds {
 
     Mod+Q { close-window; }
 
-    Mod+Left  { focus-column-left; }
-    Mod+Down  { focus-window-down; }
-    Mod+Up    { focus-window-up; }
-    Mod+Right { focus-column-right; }
     Mod+H     { focus-column-left; }
+    Mod+L     { focus-column-right; }
     Mod+J     { focus-window-or-workspace-down; }
     Mod+K     { focus-window-or-workspace-up; }
     Alt+Tab     { focus-window-down-or-top; }
     Alt+Shift+Tab     { focus-window-up-or-bottom; }
-    Mod+L     { focus-column-right; }
 
     Mod+Shift+Left  { move-column-left; }
     Mod+Shift+Down  { move-window-down; }
@@ -569,7 +576,7 @@ binds {
     Mod+R { switch-preset-column-width; }
     Mod+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }
-    Mod+Return { maximize-column; }
+    Mod+Return { maximize-window-to-edges; }
     Mod+Shift+Return { fullscreen-window; }
 
     // Expand the focused column to space not taken up by other fully visible columns.
@@ -631,9 +638,14 @@ binds {
     // Mod+Shift+E { quit; }
     Ctrl+Alt+Delete { quit; }
 
-    // Powers off the monitors. To turn them back on, do any input like
-    // moving the mouse or pressing any other key.
-    Mod+Shift+P { power-off-monitors; }
+}
+
+gestures {
+
+    hot-corners {
+        off
+    }
+
 }
 
 layer-rule {

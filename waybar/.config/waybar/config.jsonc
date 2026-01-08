@@ -1,7 +1,7 @@
 {
   "position": "top",
-  "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["hyprland/window"],
+  "modules-left": ["niri/workspaces", "mpris"],
+  "modules-center": ["niri/window"],
   "modules-right": ["pulseaudio", "battery", "clock"],
   "clock": {
     "format": "<span foreground='#f5c2e7'>   </span>{:%a %d %H:%M}",
@@ -36,5 +36,12 @@
           "default": ["", "", " "]
       },
       "on-click": "pavucontrol"
-  }
+  },
+  "mpris": {
+  "format": "{artist} - {title}",
+  "format-paused": "⏸ {artist} - {title}",
+  "format-stopped": "",
+  "max-length": 35,
+}
+
 }

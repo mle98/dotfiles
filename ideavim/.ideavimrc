@@ -18,7 +18,7 @@ set matchit
 set ideajoin
 set rnu
 set mini-ai
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
 set which-key
 set functiontextobj
 set ideamarks
@@ -38,9 +38,9 @@ map <leader>x \"_x
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 nnoremap <leader>p "+p
-vnoremap <leader>p "+p
-nnoremap <leader>P "+P
-vnoremap <leader>P "+P
+nnoremap <leader>Y "*y
+vnoremap <leader>Y "*y
+nnoremap <leader>P "*p
 
 "misc
 nmap Q <nop>

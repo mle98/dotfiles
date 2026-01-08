@@ -77,14 +77,12 @@ alias lla='eza --color=always --color-scale=all --color-scale-mode=gradient --ic
 alias lg='lazygit'
 alias vim='nvim'
 
-if status is-login
-    if test -z "$WAYLAND_DISPLAY"; and test (tty) = "/dev/tty1" 
-        set -x XDG_SESSION_TYPE wayland
-        set -x XDG_CURRENT_DESKTOP Hyprland
-        exec Hyprland
-    end
-end
 
 zoxide init fish | source
 source (/usr/bin/starship init fish --print-full-init | psub)
 
+if status is-interactive
+  mise activate fish | source
+else
+  mise activate fish --shims | source
+end
